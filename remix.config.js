@@ -14,5 +14,7 @@ export default {
     "eventsource-parser",
     "ollama-ai-provider",
     "@anthropic-ai/sdk",
-  ]
+  ],
+  server: process.env.NODE_ENV === "development" ? undefined : "./server.js",
+  serverBuildPath: ".netlify/functions-internal/server.js"
 }; 

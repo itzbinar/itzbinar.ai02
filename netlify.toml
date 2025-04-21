@@ -1,19 +1,25 @@
 [build]
   command = "pnpm run netlify:build"
-  publish = "build/client"
+  publish = "public"
+  functions = "netlify/functions"
   ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF . '!(package-lock.json)'"
 
 [build.environment]
   NODE_VERSION = "18.18.0"
   NPM_FLAGS = "--version"
   PNPM_FLAGS = "--version"
+  ENABLE_EXPERIMENTAL_COREPACK = "true"
 
 [dev]
-  command = "pnpm run dev"
-  targetPort = 5173
+  command = "pnpm run netlify:dev"
+  targetPort = 3000
   port = 8888
   publish = "build/client"
   autoLaunch = true
+  framework = "remix"
+
+[[plugins]]
+  package = "@netlify/plugin-remix"
 
 [[headers]]
   for = "/*"
@@ -31,7 +37,7 @@
 
 [[redirects]]
   from = "/*"
-  to = "/.netlify/functions/server"
+  to = "/index.html"
   status = 200
   force = true
 
