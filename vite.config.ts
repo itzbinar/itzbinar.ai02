@@ -8,6 +8,7 @@ import * as dotenv from 'dotenv';
 import { execSync } from 'child_process';
 import { readFileSync } from 'fs';
 import { join } from 'path';
+import { netlifyPlugin } from '@netlify/remix-adapter/plugin';
 
 dotenv.config();
 
@@ -127,6 +128,7 @@ export default defineConfig((config) => {
           v3_lazyRouteDiscovery: true,
         },
       }),
+      netlifyPlugin(),
       UnoCSS(),
       tsconfigPaths(),
       chrome129IssuePlugin(),

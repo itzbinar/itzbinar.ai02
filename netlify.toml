@@ -18,9 +18,6 @@
   autoLaunch = true
   framework = "remix"
 
-[[plugins]]
-  package = "@netlify/plugin-remix"
-
 [[headers]]
   for = "/*"
   [headers.values]
